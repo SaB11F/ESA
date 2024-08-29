@@ -49,12 +49,17 @@ if index_name not in pc.list_indexes().names():
 # Connect to the Pinecone index
 index = pc.Index(index_name)
 
-# Embed documents and upload to Pinecone
-for i, doc in enumerate(splits):
-    # Embed the document text
-    embedding = embedding_model.embed_query(doc.page_content)
-    
-    # Upload the vector to Pinecone with a unique ID
-    index.upsert(vectors=[(f"doc_{i}", embedding, {"source": doc.metadata['source'], "page": doc.metadata['page']})])
+batch_size = 100
+for i in range(0, len(splits), batch_size):
+    batch = splits[i:i+batch_size]
+    vectors = []
+    for j, doc in enumerate(batch):
+        embedding = embedding_model.embed_query(doc.page_content)
+        vectors.append((f"doc_{i+j}", embedding, {
+            "text": doc.page_content,
+            "source": doc.metadata['source'],
+            "page": doc.metadata['page']
+        }))
+    index.upsert(vectors=vectors)
 
 print(f"Uploaded {len(splits)} document chunks to Pinecone index '{index_name}'")
