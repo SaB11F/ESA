@@ -1,56 +1,56 @@
 //source code for the GY-21 sensor
 
-#include <Wire.h>
+//
+//    FILE: SHT2x_demo.ino
+//  AUTHOR: Rob Tillaart
+// PURPOSE: demo
+//     URL: https://github.com/RobTillaart/SHT2x
+
+
+#include "Wire.h"
+#include "SHT2x.h"
+
+uint32_t start;
+uint32_t stop;
+
+SHT2x sht;
 
 
 void setup()
 {
-Wire.begin();
+  Serial.begin(115200);
+  Serial.println(__FILE__);
+  Serial.print("SHT2x_LIB_VERSION: \t");
+  Serial.println(SHT2x_LIB_VERSION);
 
-Serial.begin(9600);
-while (!Serial); //wait for serial monitor
-Serial.println("\nI2C Scanner");
+  Wire.begin();
+  sht.begin();
+
+  uint8_t stat = sht.getStatus();
+  Serial.print(stat, HEX);
+  Serial.println();
 }
 
 
 void loop()
 {
-byte error, address;
-int nDevices;
+  start = micros();
+  sht.read();
+  stop = micros();
 
-Serial.println("Scanning...");
-
-nDevices = 0;
-for(address = 1; address < 127; address++ )
-{
-// The i2c_scanner uses the return value of
-// the Write.endTransmisstion to see if
-// a device did acknowledge to the address.
-Wire.beginTransmission(address);
-error = Wire.endTransmission();
-
-if (error == 0)
-{
-Serial.print("I2C device found at address 0x");
-if (address<16)
-Serial.print("0");
-Serial.print(address,HEX);
-Serial.println(" !");
-
-nDevices++;
+  Serial.print("\t");
+  Serial.print(stop - start);
+  Serial.print("\t");
+  Serial.print(sht.getTemperature(), 1);
+  Serial.print("\t");
+  Serial.println(sht.getHumidity(), 1);
+  delay(1000);
 }
-else if (error==4)
-{
-Serial.print("Unknow error at address 0x");
-if (address<16)
-Serial.print("0");
-Serial.println(address,HEX);
-}
-}
-if (nDevices == 0)
-Serial.println("No I2C devices found\n");
-else
-Serial.println("done\n");
 
-delay(5000); // wait 5 seconds for next scan
-}
+
+//  -- END OF FILE --
+
+//https://github.com/RobTillaart/SHT2x
+//<-- library for the GY-21 sensor
+
+//to bi moral biti source code for the GY-21 sensor
