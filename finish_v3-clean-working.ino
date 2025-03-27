@@ -3,7 +3,8 @@
   Version 2. - dodajanje funkcije za motorčke/nogice in shranjevanje na build in sd card
   Version 3. - čistopis kode, vse funkcije dokončane in izpopovnjene
 
-  Made by: slogiker and SaB11F
+  Made by: slogiker and SaB11F 
+  Vse pravice pridržane
 */
 
 #include <Wire.h>
