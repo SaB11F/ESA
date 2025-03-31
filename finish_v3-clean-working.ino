@@ -42,7 +42,7 @@ DHT dht(DHTPIN, DHTTYPE);
 Adafruit_BNO055 bno(55, 0x28, &Wire);
 Adafruit_BME680 bme(&Wire);
 SoftwareSerial ss(A1, A0);    // GPS RX, TX
-SoftwareSerial apc220(2, 3);  // APC220 RX, TX
+SoftwareSerial apc220(15, 14);  // apc rx, tx (15,14) 
 TinyGPSPlus gps;
 
 typedef struct __attribute__((packed)) {
