@@ -82,10 +82,10 @@ void joystickControl() {
 
     digitalWrite(ENABLE_PIN, LOW); // Vklopi driver
 
-    if (vrx_data > 700) moveStepper(STEP_PIN_X, HIGH); // Desno
-    if (vrx_data < 300) moveStepper(STEP_PIN_X, LOW);  // Levo
-    if (vry_data > 700) moveStepper(STEP_PIN_Y, LOW);  // Dol
-    if (vry_data < 300) moveStepper(STEP_PIN_Y, HIGH); // Gor
+    if (vrx_data > 700) moveStepper(STEP_PIN_Y, HIGH); // Desno
+    if (vrx_data < 300) moveStepper(STEP_PIN_Y, LOW);  // Levo
+    if (vry_data > 700) moveStepper(STEP_PIN_X, LOW);  // Dol
+    if (vry_data < 300) moveStepper(STEP_PIN_X, HIGH); // Gor
 }
 
 void moveStepper(int stepPin, bool dir) {
