@@ -26,7 +26,7 @@ int SMS = 800;
 SoftwareSerial apc220(APC220_RX, APC220_TX);
 
 const uint8_t START_BYTE = 0xAA;
-const size_t DATA_SIZE = 77;  // Velikost sprejetih podatkov
+const size_t DATA_SIZE = 81;  // Velikost sprejetih podatkov
 uint8_t buffer[128];
 size_t bufferIndex = 0;
 
