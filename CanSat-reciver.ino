@@ -1,3 +1,9 @@
+/*
+  Made by: slogiker and SaB11F 
+  Vse pravice pridržane
+*/
+
+
 #include <SoftwareSerial.h>
 
 #define APC220_RX 3
