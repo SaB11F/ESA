@@ -1,4 +1,8 @@
 //Vrteči dildo v3 - dodali smo gumb iz joySticka s pomočjo katerega lahko krmilimo odpiranje in zapiranje nogic na CanSatu
+/*
+      Made by: slogiker and SaB11F 
+         Vse pravice pridržane
+*/
 
 #include <SoftwareSerial.h>
 
