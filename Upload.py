@@ -1,3 +1,10 @@
+#
+#   Made by: slogiker and SaB11F 
+#      Vse pravice pridržane
+#
+#
+#
+
 import serial
 import struct
 import time
